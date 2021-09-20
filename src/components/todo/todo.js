@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Form from '../form/Form';
+
+import List from '../list/List';
 import { v4 as uuid } from 'uuid';
-import List from '../list';
-import Form from '../form';
-import Headers from '../header';
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 
 const ToDo = () => {
 
@@ -14,21 +16,22 @@ const ToDo = () => {
     setList([...list, data]);
   }
 
-  function deleteItem(id) {
-    const items = list.filter( item => item.id !== id );
-    setList(items);
-  }
+  // function deleteItem(id) {
+  //   const items = list.filter( item => item.id !== id );
+  //   setList(items);
+  // }
 
   function toggleComplete(id) {
 
-    const items = list.map( item => {
-      if ( item.id == id ) {
-        item.complete = ! item.complete;
+    const items = list.map(item => {
+      if (item.id == id) {
+        item.complete = !item.complete;
       }
       return item;
     });
 
     setList(items);
+
   }
 
   useEffect(() => {
@@ -39,19 +42,9 @@ const ToDo = () => {
 
   return (
     <>
-    <Headers/>
-      <h1>To Do List: {incomplete} items pending</h1>
-      <Form addItem={addItem}/>
-      {/* {list.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
-      ))} */}
-      <List list={list} toggleComplete={toggleComplete}/>
+      <h1>To Do List: {incomplete} Items Pending</h1>
+      <Form addItem={addItem} />
+      <List list={list} toggleComplete={toggleComplete} />
     </>
   );
 };
