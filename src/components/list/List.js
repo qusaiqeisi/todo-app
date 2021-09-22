@@ -1,5 +1,6 @@
 import React,{useState,useContext,useEffect} from 'react'
 import {settingContext} from '../../context/settings.js';
+import Button from 'react-bootstrap/Button'
 
 function List(props) {
     const settingsContext = useContext(settingContext);
@@ -56,6 +57,7 @@ function List(props) {
           <p><small>Assigned to: {item.assignee}</small></p>
           <p><small>Difficulty: {item.difficulty}</small></p>
           <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
+          <Button variant="outline-danger" onClick={() => props.handleDelete(item._id)}>Delete</Button>
           <hr />
         </div>
       ))}
